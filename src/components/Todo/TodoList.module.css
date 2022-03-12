@@ -1,0 +1,10 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-title{
+    margin-top: 3rem;
+}

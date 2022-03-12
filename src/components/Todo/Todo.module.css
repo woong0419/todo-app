@@ -1,0 +1,49 @@
+
+.todo{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem;
+}
+.btn{
+    background: none;
+    border: none;
+    position: relative;
+}
+.text{
+    font-size: 1.5rem;
+}
+.img{
+    width: 4rem;
+    filter: brightness(40%);
+}
+.catch{
+    filter: brightness(100%);
+    animation: catching 5000ms;
+}
+.img:active{
+    filter:brightness(100%)
+}
+
+.monster{
+    width: 8rem;
+    filter: brightness(5%);
+}
+
+@keyframes catching {
+    5%{
+        transform: rotate(-25deg)
+    }
+    15%{
+        transform: rotate(25deg);
+    }
+    25%{
+        transform: rotate(-25deg)
+    }
+    35%{
+        transform: rotate(25deg)
+    }
+    100%{
+        transform: rotate(25deg)
+    }
+}
