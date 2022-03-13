@@ -1,0 +1,33 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0 2rem;
+}
+
+.input label{
+    font-size: 1.3rem;
+}
+
+.input textarea{
+    width: 100%;
+    resize: none;
+    height: 3rem;
+    border: none;
+    font-size: 2rem;
+}
+.input textarea:focus{
+    outline-color:  #4ec1c4;
+}
+
+.input button {
+    align-self: flex-end;
+    width: 30%;
+    border: none;
+    border-radius: 10px;
+    background: #1089eb;
+    font-size: 1.2rem;
+    font-family: inherit;
+    padding: 0.5rem;
+    color: #ffffff;
+}

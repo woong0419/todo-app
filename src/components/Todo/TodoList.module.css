@@ -8,3 +8,66 @@
 .list-title{
     margin-top: 3rem;
 }
+
+.btns{
+    display: flex;
+    gap: 2rem;
+    padding: 2rem; 
+    justify-content: flex-start;   
+}
+.todo-wrap{
+    position: relative;
+}
+.delete-btn{
+    height: 90%;
+    width: 100%;
+    font-size: 2rem;
+    position:absolute;
+    top: 5%;
+    background: #ffffff;
+    border: none;
+    opacity: 0.8;
+    cursor: pointer;
+    display: none;
+}
+.del{
+ display: block;   
+}
+
+.btn{
+    font-size: 2rem;
+    background: none;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #4ec1c4;
+    color: #ffffff;
+}
+
+.btn:active{
+    background-color: #ffffff;
+    color: #4ec1c4;
+}
+
+.input{
+    width: 100%;
+    height: 8rem;
+    overflow-y: hidden;
+}
+.input-hide{
+    display: none;
+}
+.input-text{
+    transform:  translateY(8rem);
+    font-size: 1.5rem;
+}
+.input-active{
+    animation: adding 500ms ease-in-out 0s forwards;
+    
+}
+
+@keyframes adding {
+    to{
+        transform: translateY(0);
+    }
+}

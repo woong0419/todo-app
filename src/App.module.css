@@ -1,4 +1,16 @@
+/*
+#fdfffc
+#f0ffec
+#238999
+#4ec1c4
+*/
+.app{
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 6rem;
+    background-image: linear-gradient(to right, #fdfffc , #f0ffec);
+}
 .title{
     text-align: center;
-    margin: 2rem;
+    padding: 2rem;
 }

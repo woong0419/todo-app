@@ -1,0 +1,6 @@
+.deck-img{
+    filter: brightness(35%);
+}
+.collected{
+    filter: brightness(100%);
+}

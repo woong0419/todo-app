@@ -17,6 +17,7 @@
     width: 4rem;
     filter: brightness(40%);
 }
+
 .catch{
     filter: brightness(100%);
     animation: catching 5000ms;
@@ -29,7 +30,9 @@
     width: 8rem;
     filter: brightness(5%);
 }
-
+.collected{
+    filter: brightness(100%);
+}
 @keyframes catching {
     5%{
         transform: rotate(-25deg)

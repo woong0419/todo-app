@@ -14,6 +14,7 @@
     padding: 2rem;
     border: 6px double #141414;
     border-radius: 0.5rem;
+    background-color: #ffffff;
 }
 
 .nameBox{
@@ -25,7 +26,9 @@
     flex-direction: column;
 }
 .img{
+    overflow: hidden;
     width: 15rem;
+    transform: scale(1.4);
 }
 .xp-bar{
     width: 15rem;
