@@ -38,7 +38,6 @@ const Todo = (props) => {
         <button className={styles.btn} onClick={btnClickHandler}><img className={btnClass} src={pokeBall} alt='poke-ball-img'/></button>
         <p className={styles.text}>{props.desc}</p>
         <img className={`${styles.monster} ${isCollected && styles['collected']}`} src={img} alt='random-monster'/>
-        {console.log(ctx.collections, props.mobId, isCollected)}
         </div>
     </Fragment>)
 }

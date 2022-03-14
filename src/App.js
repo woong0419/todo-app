@@ -1,5 +1,6 @@
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { useState } from 'react';
 import { Fragment } from 'react'
 import MyStatus from './components/Status/MyStatus';
 import styles from './App.module.css'
@@ -7,10 +8,27 @@ import TodoList from './components/Todo/TodoList';
 import Nav from './components/Layout/Nav'
 import Deck from './components/Pokedeck/Deck'
 import AuthContext from './components/store/auth-context';
-import { useState } from 'react';
+import Modal from './components/UI/Modal';
 
 function App() {
   const [collections,setCollections] = useState([])
+  const [modalMessage,setModalMessage] = useState()
+  const [isImg, setIsImg] = useState(false)
+  const [status,setStatus] = useState()
+
+  const statusHandler = (obj) => {
+    setStatus(obj)
+  }
+
+  const modalHandler = (message, img = false) => {
+    setModalMessage(message)
+    setIsImg(img)
+  }
+
+  const modalDisplayHandler = (e) => {
+    e.preventDefault()
+    setModalMessage(null)
+  }
 
   const collectionHandler = (cols) => {
     setCollections(cols)
@@ -21,7 +39,11 @@ function App() {
       <AuthContext.Provider 
         value={{
           collections,
-          collectionHandler
+          collectionHandler,
+          modalHandler,
+          modalMessage,
+          status,
+          statusHandler
         }}
       >
       <Router>
@@ -36,6 +58,13 @@ function App() {
             </Fragment>}/>
           </Routes>
         <Nav />
+        {modalMessage && (
+              <Modal
+                displayHandler={modalDisplayHandler}
+                isImg={isImg}
+                // message={modalMessage}
+              >{modalMessage}</Modal>
+            )}
       </Router>
       </AuthContext.Provider>
     </div>

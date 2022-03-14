@@ -13,10 +13,14 @@ const Card = (props) => {
     let isCollected = false;
 
     useEffect(()=>{
+        let isMounted = true;
         Axios.get(url).then((res)=>{
-            setMobId(res.data.id)
-            setMobImg(res.data.sprites.front_default)
+            if (isMounted){
+                setMobId(res.data.id)
+                setMobImg(res.data.sprites.front_default)
+               }
         })
+        return () => { isMounted = false };
     },[])
 
     // eslint-disable-next-line array-callback-return
@@ -26,9 +30,15 @@ const Card = (props) => {
         }    
     })
 
+    const clickHandler = (e) => {
+        if(isCollected){
+            ctx.modalHandler(mobId,true)
+        }
+    }
+
     return(<Fragment>
         {mobId && (<>
-        <div>
+        <div onClick={clickHandler}>
             <img className={`${styles['deck-img']} ${isCollected && styles['collected']}`} src={mobImg} alt='pokemon-img'/>
         </div>
         </>)}

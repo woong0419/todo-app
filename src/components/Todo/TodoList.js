@@ -13,17 +13,21 @@ const TodoList = () =>{
     const ctx = useContext(AuthContext);
 
     useEffect(()=>{
+        let isMounted = true;
         Axios.get('http://localhost:3001/todo').then((res)=>{
-            setListApi(res.data)
+            if (isMounted){
+                 setListApi(res.data)
+                }
         })
-    },[ctx])
+        return () => { isMounted = false };
+    },[ctx.modalMessage])
 
     const todoAddHandler = (text, id) => {
         Axios.post('http://localhost:3001/post', {
             desc: text,
             randomId: id
         }).then((response)=>{
-            console.log(response)
+            ctx.modalHandler('Added')
         })
     }
 
@@ -31,21 +35,55 @@ const TodoList = () =>{
         let temp = ctx.collections
         temp.push(mobId)
         ctx.collectionHandler(temp)
+        let tempStatus = {
+            Xp: ctx.status.Xp,
+            reqXp: ctx.status.reqXp,
+            lvl: ctx.status.lvl,
+            name: ctx.status.name,
+            img: ctx.status.img,
+            id: ctx.status.id
+        }
         Axios.delete(`http://localhost:3001/delete/${id}`).then((response)=>{
         })
-        Axios.put("http://localhost:3001/update", {
-            array: JSON.stringify(ctx.collections)
-        }).then((response)=>{
+        if (tempStatus.Xp + 50 >= tempStatus.reqXp) {
+           tempStatus.lvl++
+           tempStatus.Xp = tempStatus.reqXp - tempStatus.Xp - 50
+           tempStatus.reqXp = tempStatus.reqXp + 100 
+        }else{
+            tempStatus.Xp = tempStatus.Xp + 50
+        }
 
+        if (tempStatus.lvl > 35) {
+            tempStatus.id = 6
+            tempStatus.name = 'CHARIZARD'
+            tempStatus.img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png'
+        }else if (tempStatus.lvl > 15) {
+            tempStatus.id = 5
+            tempStatus.name = 'CHARMELEON'
+            tempStatus.img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png'
+        }
+
+        Axios.put("http://localhost:3001/update", {
+            array: JSON.stringify(ctx.collections),
+            xp: tempStatus.Xp,
+            reqXp: tempStatus.reqXp,
+            lvl: tempStatus.lvl,
+            name: tempStatus.name,
+            img: tempStatus.img,
+            id: tempStatus.id
+        }).then((response)=>{
+            
         })
+        ctx.modalHandler(mobId,true)
+
     }
 
     const todoDeleteHandler = (e) => {
         e.preventDefault()
         const id = e.target.parentElement.firstChild.getAttribute('data-key')
         Axios.delete(`http://localhost:3001/delete/${id}`).then((response)=>{
-
         })
+        ctx.modalHandler('Deleted')
         setDeleteBtnHighlighted(false)
     }
 
@@ -57,7 +95,7 @@ const TodoList = () =>{
     }
     return (<Fragment>
         <div className={styles.list}>
-            {/* {console.log(listApi)} */}
+            
            <h2 className={styles['list-title']}>Today's to-do list</h2>
             {listApi && (<>
             {listApi.map((val, i)=><div key={val.id} className={styles['todo-wrap']}>

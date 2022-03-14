@@ -2,7 +2,11 @@ import React from "react";
 
 const AuthContext = React.createContext({
   collections: [],
-  collectionHandler: () => {}
+  modalMessage: '',
+  status: {},
+  collectionHandler: () => {},
+  modalHandler: ()=>{},
+  statusHandler: ()=>{}
 });
 
 export default AuthContext;
