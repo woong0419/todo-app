@@ -48,7 +48,7 @@ const TodoList = () =>{
         if (tempStatus.Xp + 50 >= tempStatus.reqXp) {
            tempStatus.lvl++
            tempStatus.Xp = tempStatus.reqXp - tempStatus.Xp - 50
-           tempStatus.reqXp = tempStatus.reqXp + 100 
+           tempStatus.reqXp = tempStatus.reqXp + 50 
         }else{
             tempStatus.Xp = tempStatus.Xp + 50
         }

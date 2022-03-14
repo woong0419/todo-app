@@ -27,13 +27,12 @@ const MyStatus = () => {
         for (let i = 0; i < exp; i++) {
             text = text + 'x'
         }
-        console.log(text)
         return text
     }
 
     return (
     <Fragment>
-        {(ctx.status && exp) && (<>{console.log(exp)}
+        {(ctx.status && exp) && (<>
         <div className={styles.status}>
         <div className={styles.textBox}>
             <div className={styles.nameBox}>

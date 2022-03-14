@@ -14,7 +14,7 @@ const Nav = () =>{
             <li>
                 <NavLink className={({ isActive }) => (isActive ? styles.active : '')}
             to="/deck">
-                    PokéDeck
+                    PokéDex
                 </NavLink>
             </li>
         </ul>
